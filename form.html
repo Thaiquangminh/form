@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <div class="main">
+        <form action="" method="post" class="form" id="form_1">
+            <div class="heading">Thành viên đăng ký</div>
+            <div class="describe">Cùng nhau học lập trình miễn phí tại F8 </div>
+
+            <div class="space"></div>
+
+            <div class="form_group">
+                <label for="fullname" class="form_label">Tên đầy đủ</label>
+                <input id="fullname" type="text" class="form_control selectInput" placeholder="VD: Minh Thái">
+                <span class="form_message"></span>
+            </div>
+
+            <div class="form_group">
+                <label for="email" class="form_label">Email</label>
+                <input id="email" type="text" class="form_control selectInput" placeholder="VD: email@domain.com">
+                <span class="form_message"></span>
+            </div>
+
+            <div class="form_group">
+                <label for="password" class="form_label">Mật khẩu</label>
+                <input id="password" type="text" class="form_control selectInput" placeholder="Nhập mật khẩu">
+                <span class="form_message"></span>
+            </div>
+
+            <div class="form_group">
+                <label for="password_confirmation" class="form_label">Nhập lại mật khẩu</label>
+                <input id="password_confirmation" type="text" class="form_control selectInput" placeholder="Nhập lại mật khẩu">
+                <span class="form_message"></span>
+            </div>
+
+            <button class="form_submit">Đăng ký</button>
+        </form>
+    </div>
+    <script src="./form.js"></script>
+
+    <script>
+        // Mong muon
+        Validator({
+            form: '#form_1',
+            rules: [
+                isRequired('#fullname', 'Vui lòng nhập tên đầy đủ'),
+                isEmail('#email'),
+                isPassword('#password', 6),
+                isConfirmed('#password_confirmation', () => {
+                    return document.querySelector('#form_1 #password').value
+                }, 'Mật khẩu nhập lại không khớp')
+            ],
+            onSubmit(data) {
+                console.log(data)
+            }
+        })
+    </script>
+</body>
+</html>
